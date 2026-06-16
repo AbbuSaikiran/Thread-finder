@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AppGuard — AI-Powered App Security Analyzer</title>
+    <meta name="description" content="Analyze Android app permissions, certificates, and security risks with AI-powered insights. Instant risk scoring for any app.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-grid"></div>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <span class="logo-icon">🛡️</span>
+                <span class="logo-text">AppGuard</span>
+            </a>
+            <div class="nav-links">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#analyzer" class="nav-link">Analyzer</a>
+                <a href="#how-it-works" class="nav-link">How It Works</a>
+                <a href="#analyzer" class="nav-btn">Try It Free →</a>
+            </div>
+            <button class="nav-mobile-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                AI-Powered Security Analysis
+            </div>
+            <h1 class="hero-title">
+                Know What Your Apps
+                <span class="gradient-text">Really Do</span>
+            </h1>
+            <p class="hero-subtitle">
+                Instant security risk scoring for Android apps. Analyze permissions,
+                detect suspicious patterns, and get AI-powered safety recommendations
+                — all in your browser.
+            </p>
+            <div class="hero-actions">
+                <a href="#analyzer" class="btn btn-primary" id="heroAnalyzeBtn">
+                    <span class="btn-icon">⚡</span>
+                    Start Analysis
+                </a>
+                <a href="#features" class="btn btn-secondary">
+                    Learn More
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="hero-stat-number" data-target="35">0</span>
+                    <span class="hero-stat-label">Permission Types</span>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number" data-target="9">0</span>
+                    <span class="hero-stat-label">Risk Categories</span>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number" data-target="5">0</span>
+                    <span class="hero-stat-label">Combo Detectors</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-phone">
+                <div class="phone-screen">
+                    <div class="phone-header">
+                        <div class="phone-notch"></div>
+                    </div>
+                    <div class="phone-app-list" id="heroAppList">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+            <div class="hero-scan-line"></div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag">Capabilities</span>
+                <h2 class="section-title">Enterprise-Grade Security Analysis</h2>
+                <p class="section-subtitle">Deep inspection of every permission, certificate, and behavioral pattern</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card feature-card-lg">
+                    <div class="feature-icon feature-icon-red">🔍</div>
+                    <h3>Permission Deep Scan</h3>
+                    <p>Analyzes 35+ dangerous Android permissions across 9 categories — Location, Camera, SMS, Storage, Phone, System, Network, Calendar, and Body Sensors.</p>
+                    <div class="feature-tag-row">
+                        <span class="feature-tag">Location</span>
+                        <span class="feature-tag">Camera</span>
+                        <span class="feature-tag">SMS</span>
+                        <span class="feature-tag">+6 more</span>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon feature-icon-orange">⚠️</div>
+                    <h3>Combo Detection</h3>
+                    <p>Flags dangerous permission combinations like SMS+Internet (OTP theft) or Camera+Mic+Internet (surveillance).</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon feature-icon-blue">📜</div>
+                    <h3>Certificate Verification</h3>
+                    <p>Detects debug-signed, self-signed, and expired certificates that indicate untrusted or development builds.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon feature-icon-green">📊</div>
+                    <h3>Risk Scoring</h3>
+                    <p>0-100 composite risk score with weighted analysis across permissions, install source, certificates, and SDK targets.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon feature-icon-purple">🧠</div>
+                    <h3>AI Recommendations</h3>
+                    <p>Connect to a local Ollama LLM for context-aware security analysis and plain-language recommendations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon feature-icon-cyan">📁</div>
+                    <h3>Export Reports</h3>
+                    <p>Download comprehensive reports in JSON or HTML format for documentation and compliance purposes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Analyzer Section -->
+    <section class="analyzer" id="analyzer">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag">Live Analyzer</span>
+                <h2 class="section-title">Security Dashboard</h2>
+                <p class="section-subtitle">Scan your device, explore demo data, or input app details manually</p>
+            </div>
+
+            <!-- Mode Tabs -->
+            <div class="analyzer-tabs">
+                <button class="analyzer-tab" data-tab="device" id="tabDevice">
+                    <span>📱</span> Scan Device
+                </button>
+                <button class="analyzer-tab active" data-tab="demo" id="tabDemo">
+                    <span>🎮</span> Demo Mode
+                </button>
+                <button class="analyzer-tab" data-tab="manual" id="tabManual">
+                    <span>✏️</span> Manual Input
+                </button>
+            </div>
+
+            <!-- Device Scan Mode -->
+            <div class="analyzer-panel" id="panelDevice">
+                <div class="device-scan-container">
+                    <!-- Connection Status -->
+                    <div class="device-status-card" id="deviceStatusCard">
+                        <div class="device-status-icon" id="deviceStatusIcon">📵</div>
+                        <div class="device-status-info">
+                            <h3 id="deviceStatusTitle">Checking connection...</h3>
+                            <p id="deviceStatusMsg">Looking for the AppGuard backend server</p>
+                        </div>
+                        <button class="btn btn-primary" id="deviceConnectBtn" disabled>
+                            <span class="btn-icon">🔍</span> Check Connection
+                        </button>
+                    </div>
+
+                    <!-- Device Info (shown when connected) -->
+                    <div class="device-info-panel hidden" id="deviceInfoPanel">
+                        <div class="device-info-grid">
+                            <div class="device-info-item">
+                                <span class="info-label">Device</span>
+                                <span class="info-value" id="devModel">—</span>
+                            </div>
+                            <div class="device-info-item">
+                                <span class="info-label">Android</span>
+                                <span class="info-value" id="devAndroid">—</span>
+                            </div>
+                            <div class="device-info-item">
+                                <span class="info-label">Brand</span>
+                                <span class="info-value" id="devBrand">—</span>
+                            </div>
+                            <div class="device-info-item">
+                                <span class="info-label">SDK</span>
+                                <span class="info-value" id="devSdk">—</span>
+                            </div>
+                        </div>
+                        <div class="scan-controls">
+                            <button class="btn btn-primary" id="startScanBtn">
+                                <span class="btn-icon">⚡</span> Scan All Apps
+                            </button>
+                            <button class="btn btn-secondary" id="scanThirdPartyBtn">
+                                3rd-Party Only
+                            </button>
+                            <div class="scan-single">
+                                <input type="text" id="singlePackageInput" class="form-input" placeholder="com.example.app">
+                                <button class="btn-sm" id="scanSingleBtn">Scan Package</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scan Progress -->
+                    <div class="scan-progress hidden" id="scanProgress">
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" id="scanProgressBar"></div>
+                        </div>
+                        <p class="progress-text" id="scanProgressText">Scanning apps...</p>
+                    </div>
+
+                    <!-- Scan Results (reuses same UI as demo) -->
+                    <div class="hidden" id="deviceResults">
+                        <div class="risk-summary" id="deviceRiskSummary"></div>
+                        <div class="risk-chart-container">
+                            <div class="risk-chart" id="deviceRiskChart"></div>
+                        </div>
+                        <div class="app-table-container">
+                            <div class="table-header">
+                                <h3 class="table-title">Device Scan Results</h3>
+                                <div class="table-actions">
+                                    <button class="btn-sm" id="deviceSortBtn">Sort by Risk ↓</button>
+                                    <button class="btn-sm" id="deviceExportJsonBtn">Export JSON</button>
+                                    <button class="btn-sm" id="deviceExportHtmlBtn">Export HTML</button>
+                                </div>
+                            </div>
+                            <div class="app-table-wrapper">
+                                <table class="app-table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th><th>App Name</th><th>Package</th>
+                                            <th>Risk Score</th><th>Level</th><th>Source</th>
+                                            <th>Top Concern</th><th>Details</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="deviceTableBody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Setup Instructions (shown when server not found) -->
+                    <div class="setup-instructions hidden" id="setupInstructions">
+                        <h3>📋 How to connect your device</h3>
+                        <div class="setup-steps">
+                            <div class="setup-step">
+                                <span class="setup-num">1</span>
+                                <div>
+                                    <strong>Install ADB</strong>
+                                    <p>Download <a href="https://developer.android.com/tools/releases/platform-tools" target="_blank" style="color:var(--accent-blue)">Android Platform Tools</a> and add to PATH</p>
+                                </div>
+                            </div>
+                            <div class="setup-step">
+                                <span class="setup-num">2</span>
+                                <div>
+                                    <strong>Enable USB Debugging</strong>
+                                    <p>On your phone: Settings → Developer Options → USB Debugging</p>
+                                </div>
+                            </div>
+                            <div class="setup-step">
+                                <span class="setup-num">3</span>
+                                <div>
+                                    <strong>Connect via USB</strong>
+                                    <p>Plug your phone in and accept the debugging prompt</p>
+                                </div>
+                            </div>
+                            <div class="setup-step">
+                                <span class="setup-num">4</span>
+                                <div>
+                                    <strong>Run the AppGuard server</strong>
+                                    <p><code>python server.py</code> from the project directory</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Demo Mode -->
+            <div class="analyzer-panel active" id="panelDemo">
+                <!-- Risk Summary Cards -->
+                <div class="risk-summary" id="riskSummary">
+                    <!-- Populated by JS -->
+                </div>
+
+                <!-- Risk Distribution Chart -->
+                <div class="risk-chart-container">
+                    <div class="risk-chart" id="riskChart">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- App Table -->
+                <div class="app-table-container">
+                    <div class="table-header">
+                        <h3 class="table-title">Scan Results</h3>
+                        <div class="table-actions">
+                            <button class="btn-sm" id="sortByRisk">Sort by Risk ↓</button>
+                            <button class="btn-sm" id="exportJsonBtn">Export JSON</button>
+                            <button class="btn-sm" id="exportHtmlBtn">Export HTML</button>
+                        </div>
+                    </div>
+                    <div class="app-table-wrapper">
+                        <table class="app-table" id="appTable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>App Name</th>
+                                    <th>Package</th>
+                                    <th>Risk Score</th>
+                                    <th>Level</th>
+                                    <th>Source</th>
+                                    <th>Top Concern</th>
+                                    <th>Details</th>
+                                </tr>
+                            </thead>
+                            <tbody id="appTableBody">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Manual Input Mode -->
+            <div class="analyzer-panel" id="panelManual">
+                <div class="manual-grid">
+                    <div class="manual-input-section">
+                        <div class="input-card">
+                            <h3>App Information</h3>
+                            <div class="form-group">
+                                <label for="appName">App Name</label>
+                                <input type="text" id="appName" placeholder="e.g. My App" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label for="packageName">Package Name</label>
+                                <input type="text" id="packageName" placeholder="e.g. com.example.myapp" class="form-input">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="targetSdk">Target SDK</label>
+                                    <input type="number" id="targetSdk" placeholder="34" class="form-input" value="34">
+                                </div>
+                                <div class="form-group">
+                                    <label for="installSource">Install Source</label>
+                                    <select id="installSource" class="form-input">
+                                        <option value="com.android.vending">Google Play Store</option>
+                                        <option value="sideloaded">Sideloaded</option>
+                                        <option value="com.sec.android.app.samsungapps">Samsung Galaxy Store</option>
+                                        <option value="com.amazon.venezia">Amazon Appstore</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Certificate</label>
+                                    <div class="checkbox-group">
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" id="certSelfSigned"> Self-Signed
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" id="certDebug"> Debug-Signed
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" id="certExpired"> Expired
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="input-card">
+                            <h3>Permissions</h3>
+                            <p class="input-card-subtitle">Select the permissions this app requests</p>
+                            <div class="permission-categories" id="permissionCategories">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary btn-full" id="analyzeBtn">
+                            <span class="btn-icon">⚡</span>
+                            Analyze Security Risk
+                        </button>
+                    </div>
+
+                    <div class="manual-results-section" id="manualResults">
+                        <div class="results-placeholder" id="resultsPlaceholder">
+                            <div class="placeholder-icon">🔒</div>
+                            <h3>Ready to Analyze</h3>
+                            <p>Configure app details and permissions, then click Analyze to see the security report.</p>
+                        </div>
+                        <div class="results-content hidden" id="resultsContent">
+                            <!-- Populated by JS after analysis -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Detail Modal -->
+    <div class="modal-overlay" id="appDetailModal">
+        <div class="modal">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-content" id="modalContent">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag">Process</span>
+                <h2 class="section-title">How AppGuard Works</h2>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <div class="step-icon">📱</div>
+                    <h3>Scan</h3>
+                    <p>Connect your Android device via ADB, or manually input app permissions and metadata in the web dashboard.</p>
+                </div>
+                <div class="step-connector">→</div>
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <div class="step-icon">🔍</div>
+                    <h3>Analyze</h3>
+                    <p>Our risk engine checks 35+ dangerous permissions, detects suspicious combinations, and validates certificates.</p>
+                </div>
+                <div class="step-connector">→</div>
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <div class="step-icon">🧠</div>
+                    <h3>AI Assess</h3>
+                    <p>Optionally, a local LLM provides context-aware analysis, understanding that a messaging app needs mic access.</p>
+                </div>
+                <div class="step-connector">→</div>
+                <div class="step-card">
+                    <div class="step-number">04</div>
+                    <div class="step-icon">📊</div>
+                    <h3>Report</h3>
+                    <p>Get a comprehensive risk score (0-100), flagged issues, and plain-language recommendations for each app.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="section-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-icon">🛡️</span>
+                    <span class="logo-text">AppGuard</span>
+                    <p class="footer-desc">AI-powered app security analysis. 100% local. No data leaves your machine.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>Product</h4>
+                        <a href="#features">Features</a>
+                        <a href="#analyzer">Analyzer</a>
+                        <a href="#how-it-works">How It Works</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Resources</h4>
+                        <a href="https://github.com" target="_blank">GitHub</a>
+                        <a href="#analyzer">CLI Tool</a>
+                        <a href="#analyzer">API Docs</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 AppGuard. Built with 🛡️ for a safer mobile world.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/risk-engine.js"></script>
+    <script src="js/demo-data.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/device-scanner.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+# Ignore Python files for Vercel deployment
+# We only want Vercel to host the static HTML/CSS/JS frontend (web/ folder)
+# The Python backend (server.py) requires a local USB connection (ADB) and cannot run in the cloud.
+
+*.py
+requirements.txt
+setup.py
+appguard/
+server.py
